@@ -25,8 +25,8 @@ public class ConsumerListner implements ChannelAwareMessageListener {
     }
 
     private void logAndThrowRejectException(Message message) {
-    //    System.out.println("Email processing failed :" + message.getBody());
-        throw new AmqpRejectAndDontRequeueException("Email processing unsuccessful pushing the message to retry queue");
+        System.out.println("Some  problem occured in processing message.. :" + message.getBody());
+        throw new AmqpRejectAndDontRequeueException("Some  problem occured in processing message...");
     }
 
     public void onMessage(Message message, Channel channel) throws Exception {
