@@ -28,7 +28,7 @@ import org.springframework.retry.support.RetryTemplate;
 
 @Configuration
 @ComponentScan("com.thetechiehouse.messageapp")
-public class RabbitMqConfig {
+public class SampleRabbitMqConfig {
 
     private static final String SIMPLE_MESSAGE_QUEUE = "simple.queue.name";
 
@@ -39,12 +39,10 @@ public class RabbitMqConfig {
     private static final String MESSAGE_TTL_ARGS_KEY = "x-message-ttl";
 
     private static final String DEAD_LETTER_ROUTING_KEY = "x-dead-letter-routing-key";
-    
 
     @Autowired
     @Qualifier("consumerListner")
     private ChannelAwareMessageListener consumerListner;
-    
 
     @Bean
     public RabbitAdmin rabbitAdmin() {
@@ -89,7 +87,6 @@ public class RabbitMqConfig {
         template.setRoutingKey(SIMPLE_MESSAGE_QUEUE);
         template.setQueue(SIMPLE_MESSAGE_QUEUE);
         template.setMessageConverter(jsonMessageConverter());
-        // template.setConfirmCallback(priceAlertPublishConfirmCallback);
         template.setRetryTemplate(retryTemplate());
         return template;
     }
